@@ -25,11 +25,14 @@ class HomePage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          const SizedBox(
-                            width: 20,
-                            child: Icon(
-                              Icons.arrow_back_outlined,
-                              color: Colors.white,
+                          SizedBox(
+                            width: 40,
+                            child: IconButton(
+                              icon: const Icon(
+                                Icons.arrow_back_outlined,
+                                color: Colors.white,
+                              ),
+                              onPressed: search.changeTapOutsideForm,
                             ),
                           ),
                           SizedBox(
@@ -47,14 +50,16 @@ class HomePage extends StatelessWidget {
                                     color: Color(0xff94A6A9),
                                     fontSize: 16,
                                   ),
-                                  suffixIcon: const Icon(Icons.search),
+                                  suffixIcon: IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(Icons.search),
+                                  ),
                                   border: InputBorder.none,
                                   floatingLabelBehavior:
                                       FloatingLabelBehavior.always,
                                   contentPadding: const EdgeInsets.symmetric(
                                       vertical: 16.0, horizontal: 8.0),
                                 ),
-                                onTap: search.changeTapForm(true),
                               ),
                             ),
                           )
@@ -78,7 +83,7 @@ class HomePage extends StatelessWidget {
                             contentPadding: const EdgeInsets.symmetric(
                                 vertical: 16.0, horizontal: 8.0),
                           ),
-                          onTap: search.changeTapForm(true),
+                          onTap: search.changeTapForm,
                         ),
                       );
               }),

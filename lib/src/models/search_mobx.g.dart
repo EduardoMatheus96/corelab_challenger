@@ -29,11 +29,22 @@ mixin _$Search on _SearchBase, Store {
       ActionController(name: '_SearchBase', context: context);
 
   @override
-  dynamic changeTapForm(dynamic value) {
+  dynamic changeTapForm() {
     final _$actionInfo = _$_SearchBaseActionController.startAction(
         name: '_SearchBase.changeTapForm');
     try {
-      return super.changeTapForm(value);
+      return super.changeTapForm();
+    } finally {
+      _$_SearchBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic changeTapOutsideForm() {
+    final _$actionInfo = _$_SearchBaseActionController.startAction(
+        name: '_SearchBase.changeTapOutsideForm');
+    try {
+      return super.changeTapOutsideForm();
     } finally {
       _$_SearchBaseActionController.endAction(_$actionInfo);
     }

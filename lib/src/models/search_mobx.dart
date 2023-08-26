@@ -8,7 +8,12 @@ abstract class _SearchBase with Store {
   bool tapForm = false;
 
   @action
-  changeTapForm(value) {
+  changeTapForm() {
     tapForm = true;
+  }
+
+  @action
+  changeTapOutsideForm() {
+    tapForm = false;
   }
 }
