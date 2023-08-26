@@ -11,7 +11,7 @@ class AppWidget extends StatelessWidget {
       title: 'Marketing place for dentists',
       theme: ThemeData(),
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home: HomePage(),
     );
   }
 }

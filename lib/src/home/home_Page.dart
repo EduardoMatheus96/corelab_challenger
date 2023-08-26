@@ -1,27 +1,87 @@
+import 'package:corelab_app_challenge/src/models/search_mobx.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+
+  final search = GetIt.I.get<Search>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: const Color(0xff00B4CC),
-        title: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: TextFormField(
-              decoration: const InputDecoration(
-                contentPadding: EdgeInsets.symmetric(vertical: 8),
-                border: InputBorder.none,
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-              ),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(60.0),
+        child: Container(
+          color: const Color(0xff00B4CC),
+          child: SafeArea(
+            child: AppBar(
+              centerTitle: true,
+              backgroundColor: const Color(0xff00B4CC),
+              title: Observer(builder: (_) {
+                return search.tapForm == true
+                    ? Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          const SizedBox(
+                            width: 20,
+                            child: Icon(
+                              Icons.arrow_back_outlined,
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width - 90,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                  hintText:
+                                      search.tapForm == true ? null : "Buscar",
+                                  hintStyle: const TextStyle(
+                                    color: Color(0xff94A6A9),
+                                    fontSize: 16,
+                                  ),
+                                  suffixIcon: const Icon(Icons.search),
+                                  border: InputBorder.none,
+                                  floatingLabelBehavior:
+                                      FloatingLabelBehavior.always,
+                                  contentPadding: const EdgeInsets.symmetric(
+                                      vertical: 16.0, horizontal: 8.0),
+                                ),
+                                onTap: search.changeTapForm(true),
+                              ),
+                            ),
+                          )
+                        ],
+                      )
+                    : Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            hintText: search.tapForm == true ? null : "Buscar",
+                            hintStyle: const TextStyle(
+                              color: Color(0xff94A6A9),
+                              fontSize: 16,
+                            ),
+                            suffixIcon: const Icon(Icons.search),
+                            border: InputBorder.none,
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            contentPadding: const EdgeInsets.symmetric(
+                                vertical: 16.0, horizontal: 8.0),
+                          ),
+                          onTap: search.changeTapForm(true),
+                        ),
+                      );
+              }),
             ),
           ),
         ),
